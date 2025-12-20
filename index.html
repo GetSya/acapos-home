@@ -3,371 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACAPOS — Point of Sale Modern</title>
+    <title>ACAPOS — Solusi Kasir Digital No. 1</title>
     
-    <!-- Fonts: Space Grotesk memberikan kesan modern & bold -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
             --black: #000000;
             --white: #ffffff;
-            --primary-bright: #00FF66; /* Hijau Neon Cerah */
-            --secondary-bright: #7000FF; /* Ungu Elektrik */
-            --accent-yellow: #FFFF00; /* Kuning Stabilo */
-            --gray-light: #F2F2F2;
-            --border-width: 3px;
+            --neon-green: #00FF66;
+            --neon-purple: #7000FF;
+            --neon-yellow: #FFFF00;
+            --neon-pink: #FF00E5;
+            --gray-bg: #F0F0F0;
+            --border-thick: 4px solid var(--black);
+            --shadow: 8px 8px 0px var(--black);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--white);
             color: var(--black);
-            line-height: 1.5;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        h1, h2, h3, .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        h1, h2, h3, h4, .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* --- Custom UI Components --- */
+        section { padding: 100px 0; border-bottom: var(--border-thick); }
+
+        /* --- Global Components --- */
         .btn-brutal {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 1rem 2rem;
-            background-color: var(--primary-bright);
-            color: var(--black);
+            padding: 1.2rem 2.5rem;
+            background: var(--neon-green);
+            border: var(--border-thick);
+            box-shadow: 6px 6px 0px var(--black);
+            font-weight: 800;
             text-decoration: none;
-            font-weight: 700;
-            border: var(--border-width) solid var(--black);
-            box-shadow: 5px 5px 0px var(--black);
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: var(--black);
+            transition: 0.2s;
+            cursor: pointer;
         }
 
-        .btn-brutal:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0px var(--black);
-            background-color: var(--accent-yellow);
-        }
+        .btn-brutal:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px var(--black); background: var(--neon-yellow); }
 
-        .btn-secondary {
-            background-color: var(--white);
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--neon-purple);
+            color: white;
+            border: 2px solid var(--black);
+            font-weight: bold;
+            margin-bottom: 10px;
+            transform: rotate(-2deg);
         }
 
         /* --- Header --- */
         .header {
-            border-bottom: var(--border-width) solid var(--black);
-            padding: 1.5rem 0;
+            background: var(--white);
+            border-bottom: var(--border-thick);
+            padding: 1rem 0;
             position: sticky;
             top: 0;
-            background: var(--white);
             z-index: 1000;
         }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; text-decoration: none; color: var(--black); display: flex; align-items: center; gap: 8px; }
+        .logo-square { width: 30px; height: 30px; background: var(--neon-pink); border: 2px solid var(--black); }
+        
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--black); font-weight: 700; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* --- Trusted By / Logos --- */
+        .trusted-by { padding: 40px 0; background: var(--white); text-align: center; border-bottom: var(--border-thick); }
+        .logo-grid { display: flex; justify-content: center; gap: 4rem; opacity: 0.6; flex-wrap: wrap; margin-top: 20px; }
+        .logo-grid i { font-size: 3rem; }
 
-        .logo {
-            font-size: 2rem;
-            text-decoration: none;
-            color: var(--black);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-box {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary-bright);
-            border: 2px solid var(--black);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 600;
-            font-size: 1rem;
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-bright);
-            text-decoration: underline;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            padding: 100px 0;
-            background-color: var(--white);
-            border-bottom: var(--border-width) solid var(--black);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-text h1 {
-            font-size: 5rem;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        .highlight-green { background: var(--primary-bright); padding: 0 10px; }
-        .highlight-purple { background: var(--secondary-bright); color: var(--white); padding: 0 10px; }
-
-        .hero-text p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            max-width: 550px;
-            font-weight: 500;
-        }
-
-        .hero-image-container {
+        /* --- Pricing Section --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 50px; }
+        .price-card {
+            border: var(--border-thick);
+            padding: 3rem 2rem;
+            background: var(--white);
+            box-shadow: var(--shadow);
             position: relative;
         }
+        .price-card.popular { background: var(--neon-yellow); }
+        .price-card h3 { font-size: 2rem; margin-bottom: 1rem; }
+        .price-amount { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; }
+        .price-features { list-style: none; margin-bottom: 2rem; }
+        .price-features li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 600; }
 
-        .hero-image-container img {
-            width: 100%;
-            border: var(--border-width) solid var(--black);
-            box-shadow: 15px 15px 0px var(--black);
-            background: var(--gray-light);
-        }
-
-        .floating-badge {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            background: var(--accent-yellow);
-            padding: 1rem;
-            border: 2px solid var(--black);
-            font-weight: 800;
-            transform: rotate(5deg);
-        }
-
-        /* --- Features Section --- */
-        .features {
-            padding: 100px 0;
-            background-color: var(--gray-light);
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
+        /* --- FAQ Section --- */
+        .faq { background: var(--gray-bg); }
+        .faq-item {
             background: var(--white);
-            border: var(--border-width) solid var(--black);
-            padding: 3rem;
-            box-shadow: 8px 8px 0px var(--black);
-            transition: 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 12px 12px 0px var(--secondary-bright);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
+            border: var(--border-thick);
             margin-bottom: 1rem;
+            box-shadow: 4px 4px 0px var(--black);
         }
-
-        /* --- Marquee (Running Text) --- */
-        .marquee {
-            background: var(--black);
-            color: var(--white);
-            padding: 20px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            display: flex;
-            border-bottom: var(--border-width) solid var(--black);
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-            font-family: 'Space Grotesk';
-            font-weight: 700;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: var(--black);
-            color: var(--white);
-            padding: 5rem 0;
-        }
-
-        .footer-grid {
+        .faq-question {
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+            font-weight: 500;
+            border-top: 2px solid var(--black);
+            padding-top: 1rem;
         }
 
-        .footer-logo {
-            font-size: 2.5rem;
-            color: var(--primary-bright);
+        /* --- Floating Support --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            width: 60px;
+            height: 60px;
+            border-radius: 0;
+            border: var(--border-thick);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-size: 2rem;
+            box-shadow: 4px 4px 0px var(--black);
+            z-index: 9999;
+            text-decoration: none;
         }
 
-        /* --- Responsive --- */
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-text h1 { font-size: 3.5rem; }
-            .hero-text p { margin: 0 auto 2.5rem; }
+        /* --- Testimoni --- */
+        .testi-card {
+            background: var(--white);
+            border: var(--border-thick);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        .testi-user { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
+        .user-avatar { width: 50px; height: 50px; background: var(--neon-green); border: 2px solid var(--black); }
+
+        @media (max-width: 768px) {
             .nav-links { display: none; }
+            h1 { font-size: 3rem !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigasi -->
+    <!-- Header -->
     <header class="header">
         <nav class="navbar container">
-            <a href="#" class="logo">
-                <div class="logo-box"></div>
-                ACAPOS
-            </a>
+            <a href="#" class="logo"><div class="logo-square"></div>ACAPOS</a>
             <ul class="nav-links">
                 <li><a href="#features">Fitur</a></li>
-                <li><a href="#">Harga</a></li>
-                <li><a href="#">Bantuan</a></li>
+                <li><a href="#pricing">Harga</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
-            <a href="https://dash.acapos.my.id" class="btn-brutal">Login App</a>
+            <a href="https://dash.acapos.my.id" class="btn-brutal" style="padding: 0.5rem 1.5rem;">START APPS</a>
         </nav>
     </header>
 
-    <!-- Marquee Akses Cepat -->
-    <div class="marquee">
-        <div class="marquee-content">
-            &nbsp; TERCEPAT DI INDONESIA • MANAJEMEN STOK OTOMATIS • LAPORAN REAL-TIME • DUKUNGAN 24/7 • TERCEPAT DI INDONESIA • MANAJEMEN STOK OTOMATIS • LAPORAN REAL-TIME • DUKUNGAN 24/7 •
+    <!-- Trusted By -->
+    <div class="trusted-by">
+        <div class="container">
+            <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Dipercaya oleh 500+ UMKM di Seluruh Indonesia</p>
+            <div class="logo-grid">
+                <i class="ph ph-brand-spotify"></i>
+                <i class="ph ph-brand-app-store"></i>
+                <i class="ph ph-brand-google-play"></i>
+                <i class="ph ph-brand-framer"></i>
+                <i class="ph ph-brand-slack"></i>
+            </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Pricing -->
+    <section id="pricing">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-text">
-                    <h1>SISTEM KASIR <br> <span class="highlight-green">TANPA RIBET.</span></h1>
-                    <p>ACAPOS membantu UMKM mengelola transaksi harian dengan kecepatan kilat. <span class="highlight-purple">Ganti buku manualmu sekarang!</span></p>
-                    <div style="display: flex; gap: 15px;">
-                        <a href="https://dash.acapos.my.id" class="btn-brutal">Mulai Gratis</a>
-                        <a href="https://demo.acapos.my.id" class="btn-brutal btn-secondary">Coba Demo</a>
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="badge">HARGA TRANSPARAN</span>
+                <h2 style="font-size: 3.5rem;">PILIH PAKET <span style="background: var(--neon-pink); color: white; padding: 0 10px;">BISNISMU</span></h2>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Paket 1 -->
+                <div class="price-card">
+                    <h3>BASIC</h3>
+                    <div class="price-amount">Rp 0<span style="font-size: 1rem;">/bln</span></div>
+                    <ul class="price-features">
+                        <li><i class="ph-bold ph-check"></i> 100 Transaksi / bln</li>
+                        <li><i class="ph-bold ph-check"></i> Laporan Harian</li>
+                        <li><i class="ph-bold ph-check"></i> Cloud Backup</li>
+                        <li style="opacity: 0.3;"><i class="ph-bold ph-x"></i> Multi Outlet</li>
+                    </ul>
+                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center;">PAKAI GRATIS</a>
+                </div>
+
+                <!-- Paket 2 -->
+                <div class="price-card popular">
+                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: var(--black); color: white; padding: 5px 20px; font-weight: 800;">TERLARIS</div>
+                    <h3>PRO</h3>
+                    <div class="price-amount">Rp 99rb<span style="font-size: 1rem;">/bln</span></div>
+                    <ul class="price-features">
+                        <li><i class="ph-bold ph-check"></i> Transaksi Tanpa Batas</li>
+                        <li><i class="ph-bold ph-check"></i> Laporan Keuangan Lengkap</li>
+                        <li><i class="ph-bold ph-check"></i> Manajemen Stok</li>
+                        <li><i class="ph-bold ph-check"></i> Cetak Struk Custom</li>
+                    </ul>
+                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center; background: var(--black); color: white;">PILIH PRO</a>
+                </div>
+
+                <!-- Paket 3 -->
+                <div class="price-card">
+                    <h3>ULTIMATE</h3>
+                    <div class="price-amount">Rp 249rb<span style="font-size: 1rem;">/bln</span></div>
+                    <ul class="price-features">
+                        <li><i class="ph-bold ph-check"></i> Semua Fitur PRO</li>
+                        <li><i class="ph-bold ph-check"></i> Multi Outlet / Cabang</li>
+                        <li><i class="ph-bold ph-check"></i> Prioritas Support 24/7</li>
+                        <li><i class="ph-bold ph-check"></i> Integrasi API</li>
+                    </ul>
+                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center;">HUBUNGI SALES</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section>
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 50px; text-align: center;">APA KATA <span style="background: var(--neon-green); padding: 0 10px;">MEREKA?</span></h2>
+            <div class="pricing-grid">
+                <div class="testi-card">
+                    <p>"Dulu rekap manual pusing banget. Sejak pakai ACAPOS, jualan jadi lebih rapi dan stok nggak pernah selisih lagi!"</p>
+                    <div class="testi-user">
+                        <div class="user-avatar"></div>
+                        <div>
+                            <h4 style="margin: 0;">Budi Santoso</h4>
+                            <small>Owner Kopi Senja</small>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image-container">
-                    <div class="floating-badge">99% PUAS</div>
-                    <img src="https://files.catbox.moe/upw38a.png" alt="Dashboard ACAPOS">
+                <div class="testi-card">
+                    <p>"Tampilan dashboard-nya keren banget, beda sama kasir lain yang kaku. Karyawan saya langsung bisa pakai tanpa training lama."</p>
+                    <div class="testi-user">
+                        <div class="user-avatar" style="background: var(--neon-purple);"></div>
+                        <div>
+                            <h4 style="margin: 0;">Siti Aminah</h4>
+                            <small>Founder Fashion Kita</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
+    <!-- FAQ -->
+    <section id="faq" class="faq">
         <div class="container">
-            <div class="section-header">
-                <h2>FITUR <span style="color: var(--secondary-bright);">UNGGULAN</span></h2>
-                <p style="font-size: 1.2rem; font-weight: 500;">Dibuat untuk mempercepat workflow bisnismu.</p>
-            </div>
+            <h2 style="font-size: 3rem; margin-bottom: 50px;">MASIH <span style="text-decoration: underline;">BINGUNG?</span></h2>
             
-            <div class="feature-grid">
-                <!-- Card 1 -->
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="ph-fill ph-lightning"></i></div>
-                    <h3>TRANSAKSI KILAT</h3>
-                    <p>Input produk hanya butuh hitungan detik. Scan barcode atau cari nama produk dengan pencarian cerdas.</p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="feature-card" style="background-color: var(--accent-yellow);">
-                    <div class="feature-icon"><i class="ph-fill ph-chart-pie-slice"></i></div>
-                    <h3>LAPORAN DETAIL</h3>
-                    <p>Lihat keuntungan bersih, barang terlaris, dan performa karyawan dalam bentuk grafik yang mudah dibaca.</p>
-                </div>
+            <div class="faq-item">
+                <div class="faq-question">Apakah ACAPOS bisa digunakan offline? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">Ya! ACAPOS memiliki fitur Offline Mode. Transaksi tetap bisa berjalan dan data akan otomatis tersinkronisasi saat internet kembali terhubung.</div>
+            </div>
 
-                <!-- Card 3 -->
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="ph-fill ph-cloud-check"></i></div>
-                    <h3>CLOUD SYNC</h3>
-                    <p>Data tersimpan aman di cloud. Pantau tokomu dari rumah, kantor, atau saat liburan lewat smartphone.</p>
-                </div>
+            <div class="faq-item">
+                <div class="faq-question">Apakah data saya aman? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">Kami menggunakan enkripsi tingkat tinggi dan backup rutin di server cloud terenkripsi untuk memastikan data bisnis Anda tidak hilang atau bocor.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Apakah saya bisa ganti paket kapan saja? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">Tentu! Anda bisa melakukan upgrade atau downgrade paket langganan Anda melalui dashboard pengaturan kapan saja.</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- Footer Terintegrasi -->
+    <footer style="background: var(--black); color: white; padding: 100px 0 50px;">
         <div class="container">
-            <div class="footer-grid">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 2px solid #333; padding-bottom: 50px;">
                 <div>
-                    <h2 class="footer-logo">ACAPOS</h2>
-                    <p style="color: #888; margin-top: 10px;">By Arasya Rafi — 2025. Terus Maju Bersama UMKM.</p>
+                    <h2 style="color: var(--neon-green);">ACAPOS</h2>
+                    <p style="margin-top: 20px; color: #888;">Modern POS system designed for bold entrepreneurs. Elevate your business game today.</p>
                 </div>
-                <div style="display: flex; gap: 20px;">
-                    <a href="https://instagram.com/arsrfii" style="color: white; font-size: 2rem;"><i class="ph ph-instagram-logo"></i></a>
-                    <a href="#" style="color: white; font-size: 2rem;"><i class="ph ph-globe"></i></a>
+                <div>
+                    <h4>Produk</h4>
+                    <ul style="list-style: none; margin-top: 20px; color: #888; line-height: 2;">
+                        <li>Fitur Kasir</li>
+                        <li>Inventaris</li>
+                        <li>Laporan Keuangan</li>
+                        <li>Manajemen Karyawan</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hubungi Kami</h4>
+                    <p style="margin-top: 20px; color: #888;">support@acapos.my.id<br>Jakarta, Indonesia</p>
                 </div>
             </div>
+            <p style="text-align: center; margin-top: 50px; color: #555;">&copy; 2025 ACAPOS. All Rights Reserved. Created with Passion by Arasya Rafi.</p>
         </div>
     </footer>
 
+    <!-- Floating WA -->
+    <a href="https://wa.me/yournumber" class="floating-wa">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <script>
+        // Simple FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // Hide all answers
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+                
+                // Toggle clicked
+                answer.style.display = isVisible ? 'none' : 'block';
+            });
+        });
+    </script>
 </body>
 </html>
