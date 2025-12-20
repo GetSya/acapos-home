@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACAPOS — Solusi Kasir Digital No. 1</title>
+    <title>ACAPOS — POS Terbaik untuk Cafe & Restoran</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,331 +17,173 @@
             --neon-green: #00FF66;
             --neon-purple: #7000FF;
             --neon-yellow: #FFFF00;
-            --neon-pink: #FF00E5;
-            --gray-bg: #F0F0F0;
-            --border-thick: 4px solid var(--black);
+            --gray-bg: #F5F5F5;
+            --border: 4px solid var(--black);
             --shadow: 8px 8px 0px var(--black);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; }
-
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+        h1, h2, h3, .logo { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
-        section { padding: 100px 0; border-bottom: var(--border-thick); }
-
-        /* --- Global Components --- */
+        /* Reusable Components */
         .btn-brutal {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             padding: 1.2rem 2.5rem;
             background: var(--neon-green);
-            border: var(--border-thick);
+            border: var(--border);
             box-shadow: 6px 6px 0px var(--black);
             font-weight: 800;
             text-decoration: none;
             color: var(--black);
             transition: 0.2s;
-            cursor: pointer;
         }
-
         .btn-brutal:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0px var(--black); background: var(--neon-yellow); }
 
-        .badge {
-            display: inline-block;
-            padding: 5px 15px;
-            background: var(--neon-purple);
-            color: white;
-            border: 2px solid var(--black);
-            font-weight: bold;
-            margin-bottom: 10px;
-            transform: rotate(-2deg);
-        }
-
-        /* --- Header --- */
-        .header {
-            background: var(--white);
-            border-bottom: var(--border-thick);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+        /* Header */
+        header { border-bottom: var(--border); padding: 1.5rem 0; sticky; top: 0; background: white; z-index: 100; }
         .navbar { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; text-decoration: none; color: var(--black); display: flex; align-items: center; gap: 8px; }
-        .logo-square { width: 30px; height: 30px; background: var(--neon-pink); border: 2px solid var(--black); }
-        
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--black); font-weight: 700; }
+        .logo { font-size: 2rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .logo-box { width: 35px; height: 35px; background: var(--neon-purple); border: 2px solid var(--black); }
 
-        /* --- Trusted By / Logos --- */
-        .trusted-by { padding: 40px 0; background: var(--white); text-align: center; border-bottom: var(--border-thick); }
-        .logo-grid { display: flex; justify-content: center; gap: 4rem; opacity: 0.6; flex-wrap: wrap; margin-top: 20px; }
-        .logo-grid i { font-size: 3rem; }
+        /* Hero */
+        .hero { padding: 100px 0; border-bottom: var(--border); background: var(--gray-bg); }
+        .hero-title { font-size: 4.5rem; line-height: 0.9; margin-bottom: 2rem; }
+        .highlight { background: var(--neon-green); padding: 0 10px; }
 
-        /* --- Pricing Section --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 50px; }
-        .price-card {
-            border: var(--border-thick);
-            padding: 3rem 2rem;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-        .price-card.popular { background: var(--neon-yellow); }
-        .price-card h3 { font-size: 2rem; margin-bottom: 1rem; }
-        .price-amount { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; }
-        .price-features { list-style: none; margin-bottom: 2rem; }
-        .price-features li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 600; }
+        /* Pricing */
+        .pricing-section { padding: 100px 0; border-bottom: var(--border); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 50px; }
+        .card { border: var(--border); padding: 3rem 2rem; position: relative; background: white; box-shadow: var(--shadow); }
+        .card.premium { background: var(--neon-yellow); }
+        .card h3 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .price { font-size: 3rem; font-weight: 800; margin-bottom: 2rem; }
+        .features-list { list-style: none; margin-bottom: 2.5rem; }
+        .features-list li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-weight: 600; }
+        .features-list li i.ph-x-circle { color: #ff0000; }
+        .features-list li i.ph-check-circle { color: #008800; }
 
-        /* --- FAQ Section --- */
-        .faq { background: var(--gray-bg); }
-        .faq-item {
-            background: var(--white);
-            border: var(--border-thick);
-            margin-bottom: 1rem;
-            box-shadow: 4px 4px 0px var(--black);
-        }
-        .faq-question {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-        .faq-answer {
-            padding: 0 1.5rem 1.5rem;
-            display: none;
-            font-weight: 500;
-            border-top: 2px solid var(--black);
-            padding-top: 1rem;
-        }
+        /* FAQ */
+        .faq-section { padding: 100px 0; background: var(--white); }
+        .faq-item { border: var(--border); margin-bottom: 1.5rem; box-shadow: 5px 5px 0px var(--black); }
+        .faq-q { padding: 1.5rem; background: var(--white); cursor: pointer; display: flex; justify-content: space-between; font-weight: 800; font-size: 1.2rem; }
+        .faq-a { padding: 0 1.5rem 1.5rem; background: var(--white); display: none; border-top: 2px solid var(--black); padding-top: 1rem; font-weight: 500; }
 
-        /* --- Floating Support --- */
-        .floating-wa {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            width: 60px;
-            height: 60px;
-            border-radius: 0;
-            border: var(--border-thick);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-size: 2rem;
-            box-shadow: 4px 4px 0px var(--black);
-            z-index: 9999;
-            text-decoration: none;
-        }
+        footer { background: var(--black); color: white; padding: 60px 0; text-align: center; }
 
-        /* --- Testimoni --- */
-        .testi-card {
-            background: var(--white);
-            border: var(--border-thick);
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-        }
-        .testi-user { display: flex; align-items: center; gap: 15px; margin-top: 20px; }
-        .user-avatar { width: 50px; height: 50px; background: var(--neon-green); border: 2px solid var(--black); }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            h1 { font-size: 3rem !important; }
-        }
+        @media (max-width: 768px) { .hero-title { font-size: 2.8rem; } }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar container">
-            <a href="#" class="logo"><div class="logo-square"></div>ACAPOS</a>
-            <ul class="nav-links">
-                <li><a href="#features">Fitur</a></li>
-                <li><a href="#pricing">Harga</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="https://dash.acapos.my.id" class="btn-brutal" style="padding: 0.5rem 1.5rem;">START APPS</a>
-        </nav>
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo"><div class="logo-box"></div> ACAPOS</a>
+            <a href="https://dash.acapos.my.id" class="btn-brutal" style="padding: 0.6rem 1.5rem;">LOG IN</a>
+        </div>
     </header>
 
-    <!-- Trusted By -->
-    <div class="trusted-by">
+    <section class="hero">
         <div class="container">
-            <p style="font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Dipercaya oleh 500+ UMKM di Seluruh Indonesia</p>
-            <div class="logo-grid">
-                <i class="ph ph-brand-spotify"></i>
-                <i class="ph ph-brand-app-store"></i>
-                <i class="ph ph-brand-google-play"></i>
-                <i class="ph ph-brand-framer"></i>
-                <i class="ph ph-brand-slack"></i>
+            <h1 class="hero-title">SOLUSI KASIR UNTUK <br><span class="highlight">CAFE & RESTORAN.</span></h1>
+            <p style="font-size: 1.3rem; max-width: 600px; margin-bottom: 2rem; font-weight: 500;">
+                Dirancang khusus untuk industri **F&B**. Kelola pesanan, meja, dan stok bahan baku dengan sistem yang 100% aman dan terpusat.
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="#pricing" class="btn-brutal">LIHAT PAKET</a>
+                <a href="https://demo.acapos.my.id" class="btn-brutal" style="background: white;">COBA DEMO</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Pricing -->
-    <section id="pricing">
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;">
-                <span class="badge">HARGA TRANSPARAN</span>
-                <h2 style="font-size: 3.5rem;">PILIH PAKET <span style="background: var(--neon-pink); color: white; padding: 0 10px;">BISNISMU</span></h2>
-            </div>
-
+            <h2 style="font-size: 3rem; text-align: center;">PILIH <span style="background: var(--neon-purple); color: white; padding: 0 10px;">PAKETMU</span></h2>
+            
             <div class="pricing-grid">
-                <!-- Paket 1 -->
-                <div class="price-card">
-                    <h3>BASIC</h3>
-                    <div class="price-amount">Rp 0<span style="font-size: 1rem;">/bln</span></div>
-                    <ul class="price-features">
-                        <li><i class="ph-bold ph-check"></i> 100 Transaksi / bln</li>
-                        <li><i class="ph-bold ph-check"></i> Laporan Harian</li>
-                        <li><i class="ph-bold ph-check"></i> Cloud Backup</li>
-                        <li style="opacity: 0.3;"><i class="ph-bold ph-x"></i> Multi Outlet</li>
+                <!-- Paket Trial -->
+                <div class="card">
+                    <span style="background: var(--black); color: white; padding: 4px 12px; font-weight: 800; font-size: 0.8rem; position: absolute; top: -15px;">GRATIS SELAMANYA</span>
+                    <h3>TRIAL</h3>
+                    <div class="price">Rp 0</div>
+                    <ul class="features-list">
+                        <li><i class="ph-bold ph-check-circle"></i> 100 Transaksi / bln</li>
+                        <li><i class="ph-bold ph-x-circle"></i> Tidak bisa ubah nama perusahaan</li>
+                        <li><i class="ph-bold ph-x-circle"></i> Nama ACAPOS tampil di kasir</li>
+                        <li><i class="ph-bold ph-x-circle"></i> Cloud backup tidak tersedia</li>
                     </ul>
-                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center;">PAKAI GRATIS</a>
+                    <a href="https://dash.acapos.my.id" class="btn-brutal" style="width: 100%; justify-content: center;">MULAI SEKARANG</a>
                 </div>
 
-                <!-- Paket 2 -->
-                <div class="price-card popular">
-                    <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: var(--black); color: white; padding: 5px 20px; font-weight: 800;">TERLARIS</div>
-                    <h3>PRO</h3>
-                    <div class="price-amount">Rp 99rb<span style="font-size: 1rem;">/bln</span></div>
-                    <ul class="price-features">
-                        <li><i class="ph-bold ph-check"></i> Transaksi Tanpa Batas</li>
-                        <li><i class="ph-bold ph-check"></i> Laporan Keuangan Lengkap</li>
-                        <li><i class="ph-bold ph-check"></i> Manajemen Stok</li>
-                        <li><i class="ph-bold ph-check"></i> Cetak Struk Custom</li>
+                <!-- Paket Sultan -->
+                <div class="card premium">
+                    <span style="background: var(--neon-purple); color: white; padding: 4px 12px; font-weight: 800; font-size: 0.8rem; position: absolute; top: -15px;">REKOMENDASI</span>
+                    <h3>SULTAN</h3>
+                    <div class="price">Rp 199rb<small style="font-size: 1rem;">/bln</small></div>
+                    <ul class="features-list">
+                        <li><i class="ph-bold ph-check-circle"></i> Transaksi Tanpa Batas</li>
+                        <li><i class="ph-bold ph-check-circle"></i> Item & Stok Unlimited</li>
+                        <li><i class="ph-bold ph-check-circle"></i> Laporan Keuangan Lengkap</li>
+                        <li><i class="ph-bold ph-check-circle"></i> Cetak Struk Custom Logo</li>
+                        <li><i class="ph-bold ph-check-circle"></i> Fitur Buku Besar</li>
+                        <li><i class="ph-bold ph-check-circle"></i> Support Prioritas 24/7</li>
                     </ul>
-                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center; background: var(--black); color: white;">PILIH PRO</a>
-                </div>
-
-                <!-- Paket 3 -->
-                <div class="price-card">
-                    <h3>ULTIMATE</h3>
-                    <div class="price-amount">Rp 249rb<span style="font-size: 1rem;">/bln</span></div>
-                    <ul class="price-features">
-                        <li><i class="ph-bold ph-check"></i> Semua Fitur PRO</li>
-                        <li><i class="ph-bold ph-check"></i> Multi Outlet / Cabang</li>
-                        <li><i class="ph-bold ph-check"></i> Prioritas Support 24/7</li>
-                        <li><i class="ph-bold ph-check"></i> Integrasi API</li>
-                    </ul>
-                    <a href="#" class="btn-brutal" style="width: 100%; justify-content: center;">HUBUNGI SALES</a>
+                    <a href="https://dash.acapos.my.id" class="btn-brutal" style="width: 100%; justify-content: center; background: var(--black); color: white;">LANGGANAN SULTAN</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimoni -->
-    <section>
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
         <div class="container">
-            <h2 style="font-size: 3rem; margin-bottom: 50px; text-align: center;">APA KATA <span style="background: var(--neon-green); padding: 0 10px;">MEREKA?</span></h2>
-            <div class="pricing-grid">
-                <div class="testi-card">
-                    <p>"Dulu rekap manual pusing banget. Sejak pakai ACAPOS, jualan jadi lebih rapi dan stok nggak pernah selisih lagi!"</p>
-                    <div class="testi-user">
-                        <div class="user-avatar"></div>
-                        <div>
-                            <h4 style="margin: 0;">Budi Santoso</h4>
-                            <small>Owner Kopi Senja</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="testi-card">
-                    <p>"Tampilan dashboard-nya keren banget, beda sama kasir lain yang kaku. Karyawan saya langsung bisa pakai tanpa training lama."</p>
-                    <div class="testi-user">
-                        <div class="user-avatar" style="background: var(--neon-purple);"></div>
-                        <div>
-                            <h4 style="margin: 0;">Siti Aminah</h4>
-                            <small>Founder Fashion Kita</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-        <div class="container">
-            <h2 style="font-size: 3rem; margin-bottom: 50px;">MASIH <span style="text-decoration: underline;">BINGUNG?</span></h2>
+            <h2 style="font-size: 3rem; margin-bottom: 40px;">PERTANYAAN <span style="color: var(--neon-purple);">UMUM</span></h2>
             
             <div class="faq-item">
-                <div class="faq-question">Apakah ACAPOS bisa digunakan offline? <i class="ph ph-caret-down"></i></div>
-                <div class="faq-answer">Ya! ACAPOS memiliki fitur Offline Mode. Transaksi tetap bisa berjalan dan data akan otomatis tersinkronisasi saat internet kembali terhubung.</div>
+                <div class="faq-q">Apakah ACAPOS bisa digunakan offline? <i class="ph ph-plus"></i></div>
+                <div class="faq-a">Tidak. ACAPOS menggunakan database online dari server pusat untuk memastikan data Anda tersinkronisasi secara real-time. Meskipun begitu, data Anda dijamin aman di server kami.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Apakah data saya aman? <i class="ph ph-caret-down"></i></div>
-                <div class="faq-answer">Kami menggunakan enkripsi tingkat tinggi dan backup rutin di server cloud terenkripsi untuk memastikan data bisnis Anda tidak hilang atau bocor.</div>
+                <div class="faq-q">Cocok dibagian bisnis apakah ACAPOS? <i class="ph ph-plus"></i></div>
+                <div class="faq-a">ACAPOS sangat cocok digunakan di bidang **F&B** seperti Cafe-cafe, Restoran, Kedai Kopi, hingga UMKM kuliner lainnya.</div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">Apakah saya bisa ganti paket kapan saja? <i class="ph ph-caret-down"></i></div>
-                <div class="faq-answer">Tentu! Anda bisa melakukan upgrade atau downgrade paket langganan Anda melalui dashboard pengaturan kapan saja.</div>
+            <div class="faq-item" style="border-color: var(--neon-green);">
+                <div class="faq-q">Apakah data saya aman? <i class="ph ph-plus"></i></div>
+                <div class="faq-a">Jelas **100% AMAN**. Database kami dikelola secara profesional oleh tim **Acamedia** menggunakan standar keamanan enkripsi terkini.</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Terintegrasi -->
-    <footer style="background: var(--black); color: white; padding: 100px 0 50px;">
+    <footer>
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; border-bottom: 2px solid #333; padding-bottom: 50px;">
-                <div>
-                    <h2 style="color: var(--neon-green);">ACAPOS</h2>
-                    <p style="margin-top: 20px; color: #888;">Modern POS system designed for bold entrepreneurs. Elevate your business game today.</p>
-                </div>
-                <div>
-                    <h4>Produk</h4>
-                    <ul style="list-style: none; margin-top: 20px; color: #888; line-height: 2;">
-                        <li>Fitur Kasir</li>
-                        <li>Inventaris</li>
-                        <li>Laporan Keuangan</li>
-                        <li>Manajemen Karyawan</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Hubungi Kami</h4>
-                    <p style="margin-top: 20px; color: #888;">support@acapos.my.id<br>Jakarta, Indonesia</p>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 50px; color: #555;">&copy; 2025 ACAPOS. All Rights Reserved. Created with Passion by Arasya Rafi.</p>
+            <h3>ACAPOS BY ARASYA RAFI</h3>
+            <p style="margin-top: 15px; opacity: 0.7;">&copy; 2025 Acamedia Team. Dikelola dengan Integritas Tinggi.</p>
         </div>
     </footer>
 
-    <!-- Floating WA -->
-    <a href="https://wa.me/yournumber" class="floating-wa">
-        <i class="ph-fill ph-whatsapp-logo"></i>
-    </a>
-
     <script>
-        // Simple FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const answer = item.nextElementSibling;
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-q').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Toggle display
                 const isVisible = answer.style.display === 'block';
-                
-                // Hide all answers
-                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
-                
-                // Toggle clicked
                 answer.style.display = isVisible ? 'none' : 'block';
+                
+                // Toggle icon
+                icon.className = isVisible ? 'ph ph-plus' : 'ph ph-minus';
+                question.parentElement.style.backgroundColor = isVisible ? 'white' : '#f0f0f0';
             });
         });
     </script>
+
 </body>
 </html>
