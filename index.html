@@ -3,26 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACAPOS — Kelola Bisnis Tanpa Batas</title>
+    <title>ACAPOS — Point of Sale Modern</title>
     
-    <!-- Fonts -->
+    <!-- Fonts: Space Grotesk memberikan kesan modern & bold -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons for modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --accent: #06b6d4;
-            --bg-dark: #0f172a;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --glass: rgba(15, 23, 42, 0.8);
-            --border: rgba(255, 255, 255, 0.1);
+            --black: #000000;
+            --white: #ffffff;
+            --primary-bright: #00FF66; /* Hijau Neon Cerah */
+            --secondary-bright: #7000FF; /* Ungu Elektrik */
+            --accent-yellow: #FFFF00; /* Kuning Stabilo */
+            --gray-light: #F2F2F2;
+            --border-width: 3px;
         }
 
         * {
@@ -34,14 +31,16 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.5;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
         h1, h2, h3, .logo {
-            font-family: 'Sora', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .container {
@@ -50,27 +49,41 @@
             padding: 0 1.5rem;
         }
 
-        /* --- Custom Scrollbar --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        /* --- Header & Nav --- */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1.2rem 0;
-            transition: 0.4s;
-            border-bottom: 1px solid transparent;
+        /* --- Custom UI Components --- */
+        .btn-brutal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 1rem 2rem;
+            background-color: var(--primary-bright);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            border: var(--border-width) solid var(--black);
+            box-shadow: 5px 5px 0px var(--black);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .header.scrolled {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--border);
+        .btn-brutal:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px var(--black);
+            background-color: var(--accent-yellow);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+        }
+
+        /* --- Header --- */
+        .header {
+            border-bottom: var(--border-width) solid var(--black);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            z-index: 1000;
         }
 
         .navbar {
@@ -80,410 +93,281 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            color: #fff;
+            font-size: 2rem;
             text-decoration: none;
+            color: var(--black);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .logo span { color: var(--primary); }
+        .logo-box {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-bright);
+            border: 2px solid var(--black);
+        }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             list-style: none;
-            align-items: center;
         }
 
-        .nav-link {
-            color: var(--text-dim);
+        .nav-links a {
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover { color: var(--primary); }
-
-        /* --- Buttons --- */
-        .btn {
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
+            color: var(--black);
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            transition: 0.2s;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 10px 20px -10px var(--primary);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background: var(--primary-dark);
-            box-shadow: 0 15px 25px -10px var(--primary);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border);
-            color: white;
-        }
-
-        .btn-outline:hover {
-            background: var(--border);
+        .nav-links a:hover {
+            color: var(--secondary-bright);
+            text-decoration: underline;
         }
 
         /* --- Hero Section --- */
         .hero {
-            padding: 180px 0 100px;
-            position: relative;
-            background: radial-gradient(circle at 50% -20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+            padding: 100px 0;
+            background-color: var(--white);
+            border-bottom: var(--border-width) solid var(--black);
         }
 
-        .badge {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--primary);
-            padding: 6px 16px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            margin-bottom: 1.5rem;
-            display: inline-block;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
+        .hero-text h1 {
+            font-size: 5rem;
+            line-height: 0.9;
+            margin-bottom: 2rem;
         }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-        }
+        .highlight-green { background: var(--primary-bright); padding: 0 10px; }
+        .highlight-purple { background: var(--secondary-bright); color: var(--white); padding: 0 10px; }
 
-        .gradient-text {
-            background: linear-gradient(to right, #fff, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            color: var(--text-dim);
-            font-size: 1.2rem;
+        .hero-text p {
+            font-size: 1.25rem;
             margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 550px;
+            font-weight: 500;
         }
 
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
+        .hero-image-container {
+            position: relative;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            border: var(--border-width) solid var(--black);
+            box-shadow: 15px 15px 0px var(--black);
+            background: var(--gray-light);
+        }
+
+        .floating-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: var(--accent-yellow);
+            padding: 1rem;
+            border: 2px solid var(--black);
+            font-weight: 800;
+            transform: rotate(5deg);
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 100px 0;
+            background-color: var(--gray-light);
+        }
+
+        .section-header {
             margin-bottom: 4rem;
         }
 
-        .hero-mockup {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-mockup img {
-            width: 100%;
-            max-width: 1000px;
-            border-radius: 24px;
-            border: 1px solid var(--border);
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* --- Stats Section --- */
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            padding: 40px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 80px;
-        }
-
-        .stat-item h4 { font-size: 2rem; color: #fff; }
-        .stat-item p { color: var(--text-dim); font-size: 0.9rem; }
-
-        /* --- Features (Bento Grid) --- */
-        .section-tag {
-            color: var(--primary);
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            display: block;
+        .section-header h2 {
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-align: center;
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .bento-grid {
+        .feature-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 280px;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .bento-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2rem;
+        .feature-card {
+            background: var(--white);
+            border: var(--border-width) solid var(--black);
+            padding: 3rem;
+            box-shadow: 8px 8px 0px var(--black);
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
         }
 
-        .bento-item:hover {
-            border-color: var(--primary);
-            background: rgba(255,255,255,0.05);
+        .feature-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px var(--secondary-bright);
         }
 
-        .bento-item i {
-            font-size: 2rem;
-            color: var(--primary);
+        .feature-icon {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            display: block;
         }
 
-        .bento-item h3 { margin-bottom: 0.8rem; }
-        .bento-item p { color: var(--text-dim); font-size: 0.95rem; }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
 
-        .large { grid-column: span 2; }
-        .tall { grid-row: span 2; }
-
-        /* --- CTA Section --- */
-        .cta-box {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 32px;
-            padding: 5rem 2rem;
-            text-align: center;
-            margin: 100px 0;
-            position: relative;
+        /* --- Marquee (Running Text) --- */
+        .marquee {
+            background: var(--black);
+            color: var(--white);
+            padding: 20px 0;
             overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            border-bottom: var(--border-width) solid var(--black);
         }
 
-        .cta-box h2 { font-size: 3rem; margin-bottom: 1rem; }
-        .cta-box p { margin-bottom: 2rem; opacity: 0.9; }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
 
         /* --- Footer --- */
         footer {
-            padding: 4rem 0;
-            border-top: 1px solid var(--border);
+            background: var(--black);
+            color: var(--white);
+            padding: 5rem 0;
         }
 
-        .footer-content {
+        .footer-grid {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .socials { display: flex; gap: 1.5rem; }
-        .socials a { color: var(--text-dim); font-size: 1.5rem; transition: 0.3s; }
-        .socials a:hover { color: #fff; }
+        .footer-logo {
+            font-size: 2.5rem;
+            color: var(--primary-bright);
+        }
 
         /* --- Responsive --- */
         @media (max-width: 992px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .large { grid-column: span 1; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu { display: none; }
-            .hero-content h1 { font-size: 3rem; }
-            .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-            .tall { grid-row: span 1; }
-            .stats { flex-direction: column; gap: 2rem; text-align: center; }
-        }
-        
-        /* Animation reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 1s all ease;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .hero-text p { margin: 0 auto 2.5rem; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header" id="header">
+    <!-- Navigasi -->
+    <header class="header">
         <nav class="navbar container">
             <a href="#" class="logo">
-                <i class="ph-fill ph-rocket-launch"></i>
-                ACA<span>POS</span>
+                <div class="logo-box"></div>
+                ACAPOS
             </a>
-            <ul class="nav-menu">
-                <li><a href="#features" class="nav-link">Fitur</a></li>
-                <li><a href="#solution" class="nav-link">Solusi</a></li>
-                <li><a href="#pricing" class="nav-link">Harga</a></li>
-                <li><a href="https://dash.acapos.my.id" class="btn btn-primary">Mulai Sekarang</a></li>
+            <ul class="nav-links">
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#">Harga</a></li>
+                <li><a href="#">Bantuan</a></li>
             </ul>
-            <!-- Mobile simple toggle can be added here -->
+            <a href="https://dash.acapos.my.id" class="btn-brutal">Login App</a>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <span class="badge">✨ v2.0 Telah Tersedia</span>
-                    <h1>Kelola Bisnis Lebih <br><span class="gradient-text">Cerdas & Cepat.</span></h1>
-                    <p>Satu platform Point of Sale untuk segala jenis usaha. Pantau penjualan, inventaris, dan pelanggan dalam satu dashboard yang elegan.</p>
-                    <div class="hero-btns">
-                        <a href="https://dash.acapos.my.id" class="btn btn-primary">
-                            Coba Gratis <i class="ph ph-arrow-right"></i>
-                        </a>
-                        <a href="https://demo.acapos.my.id" class="btn btn-outline">
-                            Lihat Demo
-                        </a>
+    <!-- Marquee Akses Cepat -->
+    <div class="marquee">
+        <div class="marquee-content">
+            &nbsp; TERCEPAT DI INDONESIA • MANAJEMEN STOK OTOMATIS • LAPORAN REAL-TIME • DUKUNGAN 24/7 • TERCEPAT DI INDONESIA • MANAJEMEN STOK OTOMATIS • LAPORAN REAL-TIME • DUKUNGAN 24/7 •
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>SISTEM KASIR <br> <span class="highlight-green">TANPA RIBET.</span></h1>
+                    <p>ACAPOS membantu UMKM mengelola transaksi harian dengan kecepatan kilat. <span class="highlight-purple">Ganti buku manualmu sekarang!</span></p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://dash.acapos.my.id" class="btn-brutal">Mulai Gratis</a>
+                        <a href="https://demo.acapos.my.id" class="btn-brutal btn-secondary">Coba Demo</a>
                     </div>
                 </div>
-                <div class="hero-mockup">
-                    <img src="https://files.catbox.moe/upw38a.png" alt="ACAPOS Dashboard Mockup">
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats -->
-        <div class="container">
-            <div class="stats reveal">
-                <div class="stat-item">
-                    <h4>10k+</h4>
-                    <p>Transaksi Harian</p>
-                </div>
-                <div class="stat-item">
-                    <h4>500+</h4>
-                    <p>UMKM Bergabung</p>
-                </div>
-                <div class="stat-item">
-                    <h4>99.9%</h4>
-                    <p>Server Uptime</p>
+                <div class="hero-image-container">
+                    <div class="floating-badge">99% PUAS</div>
+                    <img src="https://files.catbox.moe/upw38a.png" alt="Dashboard ACAPOS">
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Features Bento Grid -->
-        <section id="features" style="padding: 100px 0;">
-            <div class="container">
-                <span class="section-tag">Keunggulan</span>
-                <h2 class="section-title">Didesain untuk Pertumbuhan</h2>
-                
-                <div class="bento-grid">
-                    <div class="bento-item large reveal">
-                        <i class="ph-fill ph-chart-line-up"></i>
-                        <h3>Analitik Real-time</h3>
-                        <p>Dapatkan laporan penjualan secara instan kapanpun dan dimanapun. Pantau produk terlaris dan jam sibuk dengan visualisasi data yang mudah dipahami.</p>
-                    </div>
-                    <div class="bento-item tall reveal">
-                        <i class="ph-fill ph-device-mobile"></i>
-                        <h3>Multi-Device</h3>
-                        <p>Akses kasir Anda dari Tablet, Smartphone, maupun Laptop. Semua data tersinkronisasi secara otomatis di cloud secara aman.</p>
-                    </div>
-                    <div class="bento-item reveal">
-                        <i class="ph-fill ph-users-three"></i>
-                        <h3>Loyalitas Pelanggan</h3>
-                        <p>Bangun database pelanggan dan buat program promo yang relevan.</p>
-                    </div>
-                    <div class="bento-item reveal">
-                        <i class="ph-fill ph-shield-check"></i>
-                        <h3>Keamanan Berlapis</h3>
-                        <p>Enkripsi data standar perbankan untuk melindungi setiap transaksi bisnis Anda.</p>
-                    </div>
-                    <div class="bento-item large reveal">
-                        <i class="ph-fill ph-stack"></i>
-                        <h3>Manajemen Stok Otomatis</h3>
-                        <p>Notifikasi stok menipis dan manajemen gudang yang terintegrasi langsung dengan sistem kasir Anda saat transaksi terjadi.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="container reveal">
-            <div class="cta-box">
-                <h2>Siap Transformasi Bisnis Anda?</h2>
-                <p>Bergabunglah dengan ratusan pengusaha sukses yang telah beralih ke ACAPOS.</p>
-                <a href="#" class="btn btn-outline" style="background: white; color: var(--primary-dark); border: none; padding: 1rem 2.5rem; font-size: 1.1rem;">
-                    Daftar Sekarang — Gratis
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
+    <!-- Features Section -->
+    <section class="features" id="features">
         <div class="container">
-            <div class="footer-content">
-                <div>
-                    <a href="#" class="logo" style="margin-bottom: 1rem;">ACAPOS</a>
-                    <p style="color: var(--text-dim); font-size: 0.9rem;">&copy; 2025 ACAPOS by Arasya Rafi. <br>Crafted for better commerce.</p>
+            <div class="section-header">
+                <h2>FITUR <span style="color: var(--secondary-bright);">UNGGULAN</span></h2>
+                <p style="font-size: 1.2rem; font-weight: 500;">Dibuat untuk mempercepat workflow bisnismu.</p>
+            </div>
+            
+            <div class="feature-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="ph-fill ph-lightning"></i></div>
+                    <h3>TRANSAKSI KILAT</h3>
+                    <p>Input produk hanya butuh hitungan detik. Scan barcode atau cari nama produk dengan pencarian cerdas.</p>
                 </div>
-                <div class="socials">
-                    <a href="https://instagram.com/aca_pos"><i class="ph ph-instagram-logo"></i></a>
-                    <a href="#"><i class="ph ph-twitter-logo"></i></a>
-                    <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                
+                <!-- Card 2 -->
+                <div class="feature-card" style="background-color: var(--accent-yellow);">
+                    <div class="feature-icon"><i class="ph-fill ph-chart-pie-slice"></i></div>
+                    <h3>LAPORAN DETAIL</h3>
+                    <p>Lihat keuntungan bersih, barang terlaris, dan performa karyawan dalam bentuk grafik yang mudah dibaca.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="ph-fill ph-cloud-check"></i></div>
+                    <h3>CLOUD SYNC</h3>
+                    <p>Data tersimpan aman di cloud. Pantau tokomu dari rumah, kantor, atau saat liburan lewat smartphone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h2 class="footer-logo">ACAPOS</h2>
+                    <p style="color: #888; margin-top: 10px;">By Arasya Rafi — 2025. Terus Maju Bersama UMKM.</p>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <a href="https://instagram.com/arsrfii" style="color: white; font-size: 2rem;"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" style="color: white; font-size: 2rem;"><i class="ph ph-globe"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Header Scroll Effect
-        window.addEventListener("scroll", () => {
-            const header = document.querySelector(".header");
-            header.classList.toggle("scrolled", window.scrollY > 50);
-        });
-
-        // Scroll Reveal Animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        // Run once on load
-        reveal();
-    </script>
 </body>
 </html>
