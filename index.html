@@ -62,14 +62,6 @@
         
         section {
             padding: 100px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         /* Button Styles */
@@ -87,37 +79,6 @@
             transition: var(--transition);
             border: none;
             outline: none;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        
-        .btn:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(40, 40);
-                opacity: 0;
-            }
         }
         
         .btn-primary {
@@ -165,11 +126,6 @@
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
             padding: 20px 0;
             transition: var(--transition);
-            transform: translateY(0);
-        }
-        
-        .header.hidden {
-            transform: translateY(-100%);
         }
         
         .header.scrolled {
@@ -203,22 +159,6 @@
             justify-content: center;
             color: white;
             font-weight: 800;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
-            }
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
-            }
         }
         
         .nav-links {
@@ -259,11 +199,6 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--dark);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-toggle:hover {
-            transform: rotate(90deg);
         }
         
         /* Hero Section */
@@ -284,16 +219,6 @@
             background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0) 70%);
             border-radius: 50%;
             z-index: 0;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
         }
         
         .hero-content {
@@ -309,16 +234,6 @@
             font-size: 3.5rem;
             margin-bottom: 20px;
             color: var(--dark);
-            animation: fadeInUp 1s ease forwards;
-        }
-        
-        .hero-text p {
-            font-size: 1.2rem;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 90%;
-            animation: fadeInUp 1s ease forwards 0.3s;
-            opacity: 0;
         }
         
         .hero-text h1 span {
@@ -335,51 +250,23 @@
             height: 8px;
             background-color: rgba(37, 99, 235, 0.15);
             z-index: -1;
-            animation: highlight 1.5s ease forwards 1s;
-            transform: scaleX(0);
-            transform-origin: left;
         }
         
-        @keyframes highlight {
-            to {
-                transform: scaleX(1);
-            }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 90%;
         }
         
         .hero-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease forwards 0.6s;
-            opacity: 0;
         }
         
         .hero-image {
             position: relative;
-            animation: fadeInRight 1s ease forwards 0.3s;
-            opacity: 0;
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .hero-image img {
@@ -388,7 +275,6 @@
             box-shadow: var(--shadow-lg);
             transform: perspective(1000px) rotateY(-10deg);
             transition: var(--transition);
-            animation: float 6s ease-in-out infinite 1s;
         }
         
         .hero-image img:hover {
@@ -410,24 +296,6 @@
             text-align: center;
             flex: 1;
             min-width: 150px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .stat-item.animated {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .stat-item:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .stat-item:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        .stat-item:nth-child(4) {
-            animation-delay: 0.6s;
         }
         
         .stat-number {
@@ -461,24 +329,12 @@
             font-weight: 600;
             margin-bottom: 20px;
             font-size: 0.9rem;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .section-subtitle.animated {
-            animation: fadeInUp 0.8s ease forwards;
         }
         
         .section-title {
             font-size: 2.8rem;
             color: var(--dark);
             margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .section-title.animated {
-            animation: fadeInUp 0.8s ease forwards 0.2s;
         }
         
         .section-desc {
@@ -486,12 +342,6 @@
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .section-desc.animated {
-            animation: fadeInUp 0.8s ease forwards 0.4s;
         }
         
         .features-grid {
@@ -507,12 +357,6 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .feature-card.animated {
-            animation: fadeInUp 0.6s ease forwards;
         }
         
         .feature-card:hover {
@@ -531,12 +375,6 @@
             margin: 0 auto 25px;
             color: var(--primary);
             font-size: 28px;
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(139, 92, 246, 0.2));
         }
         
         .feature-title {
@@ -554,18 +392,6 @@
             position: relative;
         }
         
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            height: 2px;
-            background-color: var(--gray-light);
-            z-index: 0;
-        }
-        
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -577,20 +403,6 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .step-card.animated {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .step-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .step-card:nth-child(3) {
-            animation-delay: 0.4s;
         }
         
         .step-number {
@@ -607,12 +419,6 @@
             margin: 0 auto 25px;
             position: relative;
             z-index: 2;
-            transition: var(--transition);
-        }
-        
-        .step-card:hover .step-number {
-            transform: scale(1.1);
-            box-shadow: 0 0 0 10px rgba(37, 99, 235, 0.1);
         }
         
         .step-title {
@@ -640,39 +446,12 @@
             transition: var(--transition);
             text-align: center;
             position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .pricing-card.animated {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .pricing-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .pricing-card:nth-child(3) {
-            animation-delay: 0.4s;
         }
         
         .pricing-card.featured {
             border: 2px solid var(--primary);
             transform: scale(1.05);
             z-index: 2;
-            animation: pulseShadow 2s infinite;
-        }
-        
-        @keyframes pulseShadow {
-            0% {
-                box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
-            }
-            50% {
-                box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-            }
-            100% {
-                box-shadow: 0 10px 30px rgba(37, 99, 235, 0.1);
-            }
         }
         
         .pricing-card:hover {
@@ -695,16 +474,6 @@
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(-5px);
-            }
         }
         
         .pricing-title {
@@ -737,11 +506,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: var(--transition);
-        }
-        
-        .pricing-features li:hover {
-            transform: translateX(5px);
         }
         
         .pricing-features i {
@@ -761,24 +525,6 @@
             padding: 25px 30px;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .faq-item.animated {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        .faq-item:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-        
-        .faq-item:nth-child(3) {
-            animation-delay: 0.2s;
-        }
-        
-        .faq-item:nth-child(4) {
-            animation-delay: 0.3s;
         }
         
         .faq-item.active {
@@ -798,13 +544,11 @@
         .faq-answer {
             margin-top: 20px;
             color: var(--gray);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
+            display: none;
         }
         
         .faq-item.active .faq-answer {
-            max-height: 300px;
+            display: block;
         }
         
         .faq-toggle {
@@ -822,40 +566,12 @@
             color: white;
             text-align: center;
             padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="white" opacity="0.05"/></svg>') repeat;
-            animation: moveBackground 30s linear infinite;
-        }
-        
-        @keyframes moveBackground {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 100px 100px;
-            }
         }
         
         .cta h2 {
             font-size: 2.8rem;
             margin-bottom: 20px;
             color: white;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .cta h2.animated {
-            animation: fadeInUp 0.8s ease forwards;
         }
         
         .cta p {
@@ -865,24 +581,12 @@
             margin-left: auto;
             margin-right: auto;
             opacity: 0.9;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .cta p.animated {
-            animation: fadeInUp 0.8s ease forwards 0.2s;
         }
         
         .cta .btn {
             background-color: white;
             color: var(--primary);
             font-weight: 700;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .cta .btn.animated {
-            animation: fadeInUp 0.8s ease forwards 0.4s;
         }
         
         .cta .btn:hover {
@@ -931,29 +635,7 @@
         
         .footer-links li {
             margin-bottom: 15px;
-            opacity: 0;
-            transform: translateX(-10px);
         }
-        
-        .footer-links li.animated {
-            animation: slideInLeft 0.5s ease forwards;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .footer-links li:nth-child(1) { animation-delay: 0.1s; }
-        .footer-links li:nth-child(2) { animation-delay: 0.2s; }
-        .footer-links li:nth-child(3) { animation-delay: 0.3s; }
-        .footer-links li:nth-child(4) { animation-delay: 0.4s; }
         
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
@@ -987,7 +669,7 @@
         
         .social-link:hover {
             background-color: var(--primary);
-            transform: translateY(-3px) rotate(5deg);
+            transform: translateY(-3px);
         }
         
         .footer-bottom {
@@ -996,37 +678,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             opacity: 0.7;
             font-size: 0.9rem;
-        }
-        
-        /* Floating elements */
-        .floating-element {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(139, 92, 246, 0.1));
-            z-index: 0;
-            animation: floatAround 15s infinite linear;
-        }
-        
-        .floating-element:nth-child(odd) {
-            animation-duration: 20s;
-            animation-direction: reverse;
-        }
-        
-        @keyframes floatAround {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            33% {
-                transform: translate(30px, -50px) rotate(120deg);
-            }
-            66% {
-                transform: translate(-20px, 20px) rotate(240deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(360deg);
-            }
         }
         
         /* Responsive */
@@ -1071,10 +722,6 @@
                 opacity: 1;
                 visibility: visible;
             }
-            
-            .steps::before {
-                display: none;
-            }
         }
         
         @media (max-width: 768px) {
@@ -1106,12 +753,6 @@
     </style>
 </head>
 <body>
-    <!-- Floating Elements -->
-    <div class="floating-element" style="top: 10%; left: 5%;"></div>
-    <div class="floating-element" style="top: 20%; right: 8%; width: 40px; height: 40px;"></div>
-    <div class="floating-element" style="bottom: 30%; left: 10%; width: 80px; height: 80px;"></div>
-    <div class="floating-element" style="bottom: 10%; right: 15%;"></div>
-    
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -1126,7 +767,7 @@
                     <a href="#how-it-works" class="nav-link">Cara Kerja</a>
                     <a href="#pricing" class="nav-link">Harga</a>
                     <a href="#faq" class="nav-link">FAQ</a>
-                    <a href="https://dash.acapos.my.id" class="btn btn-primary">Mulai Sekarang</a>
+                    <a href="https://www.acapos.my.id" class="btn btn-primary">Mulai Sekarang</a>
                 </div>
                 
                 <div class="mobile-toggle">
@@ -1146,7 +787,7 @@
                     
                     <div class="hero-buttons">
                         <a href="#pricing" class="btn btn-primary">Lihat Paket</a>
-                        <a href="https://demo.acapos.my.id" class="btn btn-secondary">Coba Demo Gratis</a>
+                        <a href="https://www.acapos.my.id" class="btn btn-secondary">Coba Demo Gratis</a>
                     </div>
                 </div>
                 
@@ -1157,17 +798,17 @@
             
             <div class="stats">
                 <div class="stat-item">
-                    <div class="stat-number" data-count="500">0</div>
+                    <div class="stat-number">500+</div>
                     <div class="stat-text">Bisnis Terdaftar</div>
                 </div>
                 
                 <div class="stat-item">
-                    <div class="stat-number" data-count="1000">0</div>
+                    <div class="stat-number">1M+</div>
                     <div class="stat-text">Transaksi Diproses</div>
                 </div>
                 
                 <div class="stat-item">
-                    <div class="stat-number" data-count="99.9">0</div>
+                    <div class="stat-number">99.9%</div>
                     <div class="stat-text">Uptime Server</div>
                 </div>
                 
@@ -1295,7 +936,7 @@
                         <li><i class="fas fa-times"></i> Support Prioritas</li>
                     </ul>
                     
-                    <a href="https://dash.acapos.my.id" class="btn btn-secondary">Mulai Gratis</a>
+                    <a href="https://www.acapos.my.id" class="btn btn-secondary">Mulai Gratis</a>
                 </div>
                 
                 <div class="pricing-card featured">
@@ -1312,7 +953,7 @@
                         <li><i class="fas fa-check"></i> Support Prioritas 24/7</li>
                     </ul>
                     
-                    <a href="https://dash.acapos.my.id" class="btn btn-primary">Pilih Paket Ini</a>
+                    <a href="https://www.acapos.my.id" class="btn btn-primary">Pilih Paket Ini</a>
                 </div>
                 
                 <div class="pricing-card">
@@ -1392,7 +1033,7 @@
         <div class="container">
             <h2>Siap Tingkatkan Bisnis Cafe & Restoran Anda?</h2>
             <p>Bergabunglah dengan 500+ bisnis F&B yang sudah menggunakan ACAPOS untuk mengelola operasional mereka dengan lebih efisien dan profesional.</p>
-            <a href="https://dash.acapos.my.id" class="btn">Mulai Sekarang - Gratis 4 Bulan</a>
+            <a href="https://www.acapos.my.id" class="btn">Mulai Sekarang - Gratis 4 Bulan</a>
         </div>
     </section>
 
@@ -1428,7 +1069,7 @@
                     <ul class="footer-links">
                         <li><a href="#features">Fitur</a></li>
                         <li><a href="#pricing">Harga</a></li>
-                        <li><a href="https://dash.acapos.my.id">Demo Gratis</a></li>
+                        <li><a href="https://www.acapos.my.id">Demo Gratis</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
@@ -1485,24 +1126,13 @@
         });
         
         // Header scroll effect
-        let lastScrollTop = 0;
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > 100) {
+            if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-            
-            // Hide/show header on scroll
-            if (scrollTop > lastScrollTop && scrollTop > 200) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
-            lastScrollTop = scrollTop;
         });
         
         // Smooth scroll for anchor links
@@ -1521,186 +1151,6 @@
                     });
                 }
             });
-        });
-        
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Section animations
-                    if (entry.target.classList.contains('section')) {
-                        entry.target.classList.add('visible');
-                    }
-                    
-                    // Section header elements
-                    if (entry.target.classList.contains('section-subtitle') || 
-                        entry.target.classList.contains('section-title') || 
-                        entry.target.classList.contains('section-desc')) {
-                        entry.target.classList.add('animated');
-                    }
-                    
-                    // Feature cards
-                    if (entry.target.classList.contains('feature-card')) {
-                        entry.target.classList.add('animated');
-                    }
-                    
-                    // Step cards
-                    if (entry.target.classList.contains('step-card')) {
-                        entry.target.classList.add('animated');
-                    }
-                    
-                    // Pricing cards
-                    if (entry.target.classList.contains('pricing-card')) {
-                        entry.target.classList.add('animated');
-                    }
-                    
-                    // FAQ items
-                    if (entry.target.classList.contains('faq-item')) {
-                        entry.target.classList.add('animated');
-                    }
-                    
-                    // CTA elements
-                    if (entry.target.classList.contains('cta') || 
-                        entry.target.classList.contains('cta').querySelector('h2') ||
-                        entry.target.classList.contains('cta').querySelector('p') ||
-                        entry.target.classList.contains('cta').querySelector('.btn')) {
-                        const ctaSection = entry.target.closest('.cta');
-                        if (ctaSection) {
-                            ctaSection.querySelector('h2').classList.add('animated');
-                            ctaSection.querySelector('p').classList.add('animated');
-                            ctaSection.querySelector('.btn').classList.add('animated');
-                        }
-                    }
-                    
-                    // Stats
-                    if (entry.target.classList.contains('stat-item')) {
-                        entry.target.classList.add('animated');
-                        // Animate counting numbers
-                        const statNumber = entry.target.querySelector('.stat-number');
-                        if (statNumber && statNumber.hasAttribute('data-count')) {
-                            animateCount(statNumber);
-                        }
-                    }
-                    
-                    // Footer links
-                    if (entry.target.classList.contains('footer-links')) {
-                        const footerLinks = entry.target.querySelectorAll('li');
-                        footerLinks.forEach(link => {
-                            link.classList.add('animated');
-                        });
-                    }
-                }
-            });
-        }, observerOptions);
-        
-        // Observe sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // Observe section header elements
-        document.querySelectorAll('.section-subtitle, .section-title, .section-desc').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Observe feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            observer.observe(card);
-        });
-        
-        // Observe step cards
-        document.querySelectorAll('.step-card').forEach(card => {
-            observer.observe(card);
-        });
-        
-        // Observe pricing cards
-        document.querySelectorAll('.pricing-card').forEach(card => {
-            observer.observe(card);
-        });
-        
-        // Observe FAQ items
-        document.querySelectorAll('.faq-item').forEach(item => {
-            observer.observe(item);
-        });
-        
-        // Observe stats
-        document.querySelectorAll('.stat-item').forEach(stat => {
-            observer.observe(stat);
-        });
-        
-        // Observe footer links
-        document.querySelectorAll('.footer-links').forEach(list => {
-            observer.observe(list);
-        });
-        
-        // Animate counting numbers
-        function animateCount(element) {
-            const target = parseInt(element.getAttribute('data-count'));
-            const suffix = element.textContent.includes('%') ? '%' : '';
-            let current = 0;
-            const increment = target / 50; // Adjust speed
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = suffix === '%' ? current.toFixed(1) + suffix : Math.floor(current) + suffix;
-            }, 30);
-        }
-        
-        // Button ripple effect
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const x = e.clientX - e.target.getBoundingClientRect().left;
-                const y = e.clientY - e.target.getBoundingClientRect().top;
-                
-                const ripple = document.createElement('span');
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-        
-        // Initialize animations for elements already in view
-        document.addEventListener('DOMContentLoaded', function() {
-            // Make hero section visible immediately
-            document.querySelector('.hero').classList.add('visible');
-            
-            // Animate hero text
-            setTimeout(() => {
-                document.querySelector('.hero-text p').style.opacity = '1';
-                document.querySelector('.hero-text p').style.transform = 'translateY(0)';
-            }, 300);
-            
-            setTimeout(() => {
-                document.querySelector('.hero-buttons').style.opacity = '1';
-                document.querySelector('.hero-buttons').style.transform = 'translateY(0)';
-            }, 600);
-            
-            // Animate stats after a delay
-            setTimeout(() => {
-                document.querySelectorAll('.stat-item').forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('animated');
-                        const statNumber = item.querySelector('.stat-number');
-                        if (statNumber && statNumber.hasAttribute('data-count')) {
-                            animateCount(statNumber);
-                        }
-                    }, index * 200);
-                });
-            }, 1000);
         });
     </script>
 </body>
